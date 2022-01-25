@@ -2,25 +2,25 @@
  * Build gradle file for the Pravega connector
  */
 
-plugins {
-    id 'java'
-    id 'distribution'
-    id 'maven'
-}
+//plugins {
+//    id 'java'
+//    id 'distribution'
+//    id 'maven'
+//}
+//
+//apply from: "$rootDir/gradle/checkstyle.gradle"
 
-apply from: "$rootDir/gradle/checkstyle.gradle"
-
-repositories {
-    mavenLocal()
-
-    maven {
-        url = uri('https://repo.maven.apache.org/maven2')
-    }
-
-    maven {
-        url = uri('https://jitpack.io')
-    }
-}
+//repositories {
+//    mavenLocal()
+//
+//    maven {
+//        url = uri('https://repo.maven.apache.org/maven2')
+//    }
+//
+//    maven {
+//        url = uri('https://jitpack.io')
+//    }
+//}
 
 dependencies {
     compile "com.facebook.airlift:bootstrap:${airliftBootstrapVersion}"
@@ -47,12 +47,12 @@ dependencies {
     compile "io.pravega:schemaregistry-serializers-shared:${pravegaSchemaRegistryVersion}"
     compile "io.pravega:schemaregistry-serializers-json:${pravegaSchemaRegistryVersion}"
 
-    compile "com.facebook.presto:presto-main:${prestoVersion}"
+    permitUnusedDeclared "com.facebook.presto:presto-main:${prestoVersion}"
     compile "com.facebook.presto:presto-record-decoder:${prestoVersion}"
     compile "com.facebook.presto:presto-spi:${prestoVersion}"
     compile "com.facebook.presto:presto-common:${prestoVersion}"
 
-    compile group: 'io.netty', name: 'netty-all', version:"{nettyVersion}"
+//    compile group: 'io.netty', name: 'netty-all', version:"{nettyVersion}"
 
     runtimeOnly "io.airlift:joda-to-java-time-bridge:3"
     runtimeOnly "com.facebook.airlift:log-manager:${airliftLogManagerVersion}"
@@ -65,9 +65,9 @@ dependencies {
     testCompile (group: 'io.pravega', name: 'pravega-standalone', version: pravegaVersion)
 
     compileOnly "io.airlift:slice:${airliftSliceVersion}"
-    compileOnly "io.airlift:units:${airliftUnitsVersion}"
+//    compileOnly "io.airlift:units:${airliftUnitsVersion}"
     compileOnly "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
-    compileOnly "org.openjdk.jol:jol-core:0.2"
+//    compileOnly "org.openjdk.jol:jol-core:0.2"
 }
 
 group = 'io.pravega'

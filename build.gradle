@@ -1,0 +1,56 @@
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "ca.cutterslade.gradle:gradle-dependency-analyze:1.8.3"
+  }
+}
+
+subprojects {
+
+    apply plugin: 'java'
+    apply plugin: 'distribution'
+    apply plugin: 'maven'
+
+    apply from: "$rootDir/gradle/checkstyle.gradle"
+
+    repositories {
+      mavenLocal()
+    }
+}
+
+allprojects {
+  apply plugin: 'ca.cutterslade.analyze'
+}
+
+project(':prestodb') {
+  repositories {
+    maven {
+      url = uri('https://repo.maven.apache.org/maven2')
+    }
+
+    maven {
+      url = uri('https://jitpack.io')
+    }
+  }
+}
+
+
+project(':trino') {
+  repositories {
+    maven {
+      url = uri('https://packages.confluent.io/maven/')
+    }
+
+    maven {
+      url = uri('https://oss.sonatype.org/content/repositories/snapshots')
+    }
+
+    maven {
+      url = uri('https://repo.maven.apache.org/maven2')
+    }
+  }
+}
